@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cts168v6eovhs"]
+
+[ext_resource type="Texture2D" uid="uid://rak76vqkkuum" path="res://assets/goog.jpg" id="1_xu17f"]
+[ext_resource type="Script" uid="uid://1cvenm8g5ih8" path="res://scenes/goog.gd" id="2_jivt1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu17f"]
+size = Vector2(200, 250)
+
+[node name="Goog" type="Area2D" unique_id=2016697650]
+script = ExtResource("2_jivt1")
+
+[node name="Goog" type="Sprite2D" parent="." unique_id=179873097]
+scale = Vector2(0.20777778, 0.20777778)
+texture = ExtResource("1_xu17f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=663202737]
+shape = SubResource("RectangleShape2D_xu17f")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

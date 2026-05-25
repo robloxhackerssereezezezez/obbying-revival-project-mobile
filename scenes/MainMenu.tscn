@@ -5,16 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://wec8jyru71tj" path="res://assets/images/UI/Obby Revival Project.svg" id="3_mipys"]
 [ext_resource type="Theme" uid="uid://dyn87lf4436y3" path="res://assets/resources/ui_styles/MainMenuButton.tres" id="4_l72w3"]
 [ext_resource type="Texture2D" uid="uid://bkxrsp8epmuhv" path="res://assets/images/UI/file.png" id="5_7la6k"]
-[ext_resource type="Texture2D" uid="uid://rak76vqkkuum" path="res://assets/goog.jpg" id="5_8a8k8"]
 [ext_resource type="PackedScene" uid="uid://bwlmhgmpfqdjh" path="res://assets/prefabs/UI/sensitivity.tscn" id="5_l72w3"]
 [ext_resource type="Texture2D" uid="uid://ctlrovtarcx8" path="res://assets/images/UI/refresh.png" id="6_2nypq"]
 [ext_resource type="PackedScene" uid="uid://bll3e5wwm6qpo" path="res://assets/prefabs/UI/FOV.tscn" id="6_826wr"]
 [ext_resource type="PackedScene" uid="uid://b5gciitoxxw3j" path="res://assets/prefabs/UI/maxFPS.tscn" id="7_ucygd"]
 [ext_resource type="PackedScene" uid="uid://buyvpgvyi0uoh" path="res://assets/prefabs/UI/alljumpToggle.tscn" id="8_mipys"]
+[ext_resource type="PackedScene" uid="uid://cts168v6eovhs" path="res://scenes/goog.tscn" id="10_2nypq"]
 
-[sub_resource type="Theme" id="Theme_ucygd"]
-Button/font_sizes/font_size = 32
-Button/fonts/font = null
 [sub_resource type="GDScript" id="GDScript_2nypq"]
 resource_name = "Location"
 script/source = "extends Button
@@ -30,6 +27,10 @@ script/source = "extends Button
 func _on_pressed() -> void:
 	owner.load_all_levels()
 "
+
+[sub_resource type="Theme" id="Theme_ucygd"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = null
 
 [sub_resource type="Shader" id="Shader_8a8k8"]
 code = "shader_type canvas_item;
@@ -76,7 +77,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7la6k"]
 shader = SubResource("Shader_8a8k8")
 shader_parameter/star_density = 0.5
-shader_parameter/elapsed_time = 1901.4189832210093
+shader_parameter/elapsed_time = 2981.4593706691694
 shader_parameter/direction = Vector2(-1, 0)
 
 [sub_resource type="GDScript" id="GDScript_ucygd"]
@@ -152,14 +153,8 @@ offset_bottom = 470.0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Load" type="Button" parent="Main" unique_id=1040376984]
-offset_left = -200.0
-offset_top = 289.0
-offset_right = -11.0
-offset_bottom = 342.0
-theme = SubResource("Theme_ucygd")
-text = "Load Folder"
 [node name="Open Location" type="Button" parent="Main/Panel" unique_id=1431265062]
+visible = false
 layout_mode = 0
 offset_left = 550.0
 offset_right = 591.0
@@ -180,10 +175,13 @@ icon = ExtResource("6_2nypq")
 expand_icon = true
 script = SubResource("GDScript_7la6k")
 
-[node name="Goog" type="Sprite2D" parent="Main" unique_id=219827493]
-position = Vector2(1856.0001, 246)
-scale = Vector2(0.20777778, 0.20777778)
-texture = ExtResource("5_8a8k8")
+[node name="Load" type="Button" parent="Main" unique_id=1040376984]
+offset_left = -200.0
+offset_top = 289.0
+offset_right = -11.0
+offset_bottom = 342.0
+theme = SubResource("Theme_ucygd")
+text = "Load Folder"
 
 [node name="BG" type="Control" parent="." unique_id=500703345]
 layout_mode = 3
@@ -203,20 +201,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1401.0
-offset_top = -755.0
-offset_right = 11399.0
-offset_bottom = 6445.0
+offset_left = -6400.0
+offset_top = -3600.0
+offset_right = 6400.0
+offset_bottom = 3600.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = SubResource("GDScript_ucygd")
-elapsed_time = 1901.4189832210093
+elapsed_time = 2981.4593706691694
 metadata/_edit_lock_ = true
 
 [node name="Settings" type="Node2D" parent="." unique_id=132079008]
-position = Vector2(1300, 0)
+position = Vector2(2200, 0)
 
 [node name="Sensitivity" parent="Settings" unique_id=736337411 instance=ExtResource("5_l72w3")]
 offset_left = -617.0
@@ -249,6 +247,9 @@ offset_bottom = -70.0
 max_value = 80.0
 tick_count = 16
 
+[node name="Goog" parent="Settings" unique_id=179873097 instance=ExtResource("10_2nypq")]
+position = Vector2(556.0001, 246)
+
 [node name="Desc" type="Panel" parent="." unique_id=2044121970]
 offset_top = -351.0
 offset_right = 525.0
@@ -266,11 +267,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="FileDialog" type="FileDialog" parent="." unique_id=816336805]
-oversampling_override = 1.0
-title = "Open a Directory"
-file_mode = 2
-access = 2
 [node name="Label2" type="Label" parent="Desc" unique_id=463695962]
 layout_mode = 0
 offset_top = 95.0
@@ -281,6 +277,12 @@ theme_override_font_sizes/font_size = 20
 autowrap_mode = 2
 clip_text = true
 
+[node name="FileDialog" type="FileDialog" parent="." unique_id=816336805]
+oversampling_override = 1.0
+title = "Open a Directory"
+file_mode = 2
+access = 2
+
 [node name="AlljumpToggle" parent="." unique_id=118282012 instance=ExtResource("8_mipys")]
 offset_left = 1057.0
 offset_top = 52.0
@@ -289,8 +291,8 @@ offset_bottom = 91.0
 
 [connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Main/Load" to="." method="_on_load_folder_pressed"]
 [connection signal="pressed" from="Main/Panel/Open Location" to="Main/Panel/Open Location" method="_on_pressed"]
 [connection signal="pressed" from="Main/Panel/Reload" to="Main/Panel/Reload" method="_on_pressed"]
+[connection signal="pressed" from="Main/Load" to="." method="_on_load_folder_pressed"]
 [connection signal="pressed" from="Settings/Back" to="." method="_on_return_to_main_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

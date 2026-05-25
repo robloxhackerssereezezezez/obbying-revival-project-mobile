@@ -10,7 +10,6 @@ var button = preload("res://assets/prefabs/UI/LevelCard.tscn")
 @onready var file_dialog = $FileDialog
 
 func _ready():
-	init_levels()
 	#var levels = load_all_levels()
 	#for i in levels:
 		#var level = load_level(i)
@@ -78,7 +77,7 @@ func load_level(path):
 func load_all_levels(dir_path = "user://levels"):
 	for x in list.get_children():
 		x.call_deferred("queue_free")
-	var levels = fetch_levels()
+	var levels = fetch_levels(dir_path)
 	for i in levels:
 		var level = load_level(i)
 		
@@ -100,7 +99,7 @@ func load_all_levels(dir_path = "user://levels"):
 			desc.text = "Tier: %s\nBy: %s" % [difficulty, creator]
 		)
 
-func fetch_levels():
+func fetch_levels(dir_path = "user://levels"):
 	var levels = []
 	var dir = DirAccess.open(dir_path)
 	
@@ -125,29 +124,4 @@ func _on_load_folder_pressed() -> void:
 
 
 func _on_file_dialog_dir_selected(dir: String) -> void:
-	init_levels(dir)
-
-func init_levels(path = "user://levels"):
-	var levels = load_all_levels(path)
-	for i in levels:
-		var level = load_level(i)
-		if not level or typeof(level) != TYPE_DICTIONARY:
-			push_warning("Level data at index " + str(i) + " is invalid.")
-			return "err"
-		load_level_data(i)
-
-func load_level_data(i):
-	var level = load_level(i)
-	
-	var obby_name = level.get("ObbyName", "Undefined Level")
-	var difficulty = level.get("Difficulty", "Unknown")
-	var creator = level.get("Creator", "Unknown Creator")
-
-	var buttonthing = button.instantiate()
-	buttonthing.text = obby_name
-	list.add_child(buttonthing)
-		
-	buttonthing.pressed.connect(func():
-		GameManager.currentLevel = i
-		descLabel.text = "Selected: %s\nTier: %s\nBy: %s" % [obby_name, difficulty, creator]
-	)
+	load_all_levels(dir)
