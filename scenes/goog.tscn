@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://rak76vqkkuum" path="res://assets/goog.jpg" id="1_xu17f"]
 [ext_resource type="Script" uid="uid://1cvenm8g5ih8" path="res://scenes/goog.gd" id="2_jivt1"]
+[ext_resource type="AudioStream" uid="uid://gp6borqpgckb" path="res://assets/goog.mp3" id="3_jivt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu17f"]
 size = Vector2(200, 250)
@@ -15,5 +16,8 @@ texture = ExtResource("1_xu17f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=663202737]
 shape = SubResource("RectangleShape2D_xu17f")
+
+[node name="Aura" type="AudioStreamPlayer" parent="." unique_id=1643778103]
+stream = ExtResource("3_jivt1")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
