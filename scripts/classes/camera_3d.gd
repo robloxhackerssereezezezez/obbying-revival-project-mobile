@@ -69,13 +69,13 @@ func _unhandled_input(event):
 			yaw -= event.relative.x * GameManager.data.sensitivity / 200.0
 			pitch -= event.relative.y * GameManager.data.sensitivity / 200.0
 			pitch = clamp(pitch, -1.5, 1.5)
-	if event is InputEventScreenDrag and event.index < 3:
+	if event is InputEventScreenDrag and event.index < 2:
 		fingers2[event.index] = event.position
 		if len(fingers) == 2 and len(fingers2) == 2:
-			target_distance -= ((fingers2[0] - fingers2[1]).length()-(fingers[0] - fingers[1]).length()) * 0.3
+			target_distance -= ((fingers2[0] - fingers2[1]).length()-(fingers[0] - fingers[1]).length()) * 0.075
 			print(fingers)
 			fingers = fingers2.duplicate()
-	elif event is InputEventScreenTouch and event.index < 3:
+	elif event is InputEventScreenTouch and event.index < 2:
 		if event.pressed:
 			fingers[event.index] = event.position
 		else:
