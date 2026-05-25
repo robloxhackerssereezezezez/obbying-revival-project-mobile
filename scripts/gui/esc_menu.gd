@@ -26,3 +26,6 @@ func _ready():
 	$Quit.pressed.connect(func():
 		GameManager._notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		pass)
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("esc"):
+		toggle_paused()

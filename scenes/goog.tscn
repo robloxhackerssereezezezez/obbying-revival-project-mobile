@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://gp6borqpgckb" path="res://assets/goog.mp3" id="3_jivt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu17f"]
-size = Vector2(200, 250)
+size = Vector2(187, 250)
 
 [node name="Goog" type="Area2D" unique_id=2016697650]
 script = ExtResource("2_jivt1")

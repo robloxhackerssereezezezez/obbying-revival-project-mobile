@@ -27,7 +27,6 @@ layout_mode = 0
 offset_top = -378.0
 offset_right = 1999.0
 offset_bottom = 720.0
-mouse_filter = 2
 color = Color(0.17254902, 0.17254902, 0.17254902, 0.34509805)
 
 [node name="Sensitivity" parent="." unique_id=736337411 instance=ExtResource("1_lxta3")]
@@ -118,3 +117,6 @@ theme_override_fonts/font = ExtResource("5_vgykv")
 theme_override_font_sizes/font_size = 64
 text = "ESC Menu"
 horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=416935551]
+layer = 9999

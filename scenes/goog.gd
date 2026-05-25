@@ -1,4 +1,6 @@
+@icon("res://assets/goog.jpg")
 extends Area2D
+
 var e = 0
 var smod = 0
 @onready var goog = $Goog
