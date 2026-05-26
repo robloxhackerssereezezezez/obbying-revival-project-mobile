@@ -22,8 +22,6 @@ config/show_image=true
 
 GameManager="*uid://cte5656lvloub"
 Mouse="*uid://cu25jxjffbj0w"
-DiscordRPCLoader="*uid://qnxs07vgnacx"
-DiscordRPCManager="*uid://dhduneqga1y8e"
 
 [display]
 

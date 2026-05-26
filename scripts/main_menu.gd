@@ -13,14 +13,14 @@ var button = preload("res://assets/prefabs/UI/LevelCard.tscn")
 @export var menu_avatar: CharacterAvatarMesh
 @export var body_parts: Dictionary[ColorPickerButton, String]
 
-@export var menu_avatar: CharacterAvatarMesh
-@export var body_parts: Dictionary[ColorPickerButton, String]
-
 func _ready():
-	OS.request_permissions()
 	var perms = OS.get_granted_permissions()
-	if not (perms.has("android.permission.READ_EXTERNAL_STORAGE") or perms.has("android.permission.MANAGE_EXTERNAL_STORAGE")):
+	if not perms.has("android.permission.READ_EXTERNAL_STORAGE"):
 		$Main/warn.show()
+		OS.request_permission("android.permission.READ_EXTERNAL_STORAGE")
+	elif not perms.has("android.permission.MANAGE_EXTERNAL_STORAGE"):
+		$Main/warn.show()
+		OS.request_permission("android.permission.MANAGE_EXTERNAL_STORAGE")
 	
 	#var levels = load_all_levels()
 	#for i in levels:
@@ -80,24 +80,24 @@ func _file_dragged(files:PackedStringArray):
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://custom.tscn")
 	
-	if DiscordRPCManager != null:
-		DiscordRPCManager.playing(GameManager.currentLevel)
+	#if DiscordRPCManager != null:
+		#DiscordRPCManager.playing(GameManager.currentLevel)
 
 
 
 func _on_settings_pressed() -> void:
 	cam.global_position = Settings.global_position
 	
-	if DiscordRPCManager != null:
-		DiscordRPCManager.settings()
+	#if DiscordRPCManager != null:
+		#DiscordRPCManager.settings()
 
 
 
 func _on_return_to_main_pressed() -> void:
 	cam.global_position = Main.global_position
 	
-	if DiscordRPCManager != null:
-		DiscordRPCManager.menu()
+	#if DiscordRPCManager != null:
+		#DiscordRPCManager.menu()
 
 func _on_return_to_settings_pressed() -> void:
 	cam.global_position = Settings.global_position

@@ -30,6 +30,7 @@ animations = [{
 [node name="Mouse" type="CanvasLayer" unique_id=1574605669]
 process_mode = 3
 layer = 1000000
+visible = false
 follow_viewport_enabled = true
 
 [node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=205214244]

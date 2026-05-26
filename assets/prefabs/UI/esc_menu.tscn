@@ -7,7 +7,10 @@
 [ext_resource type="Theme" uid="uid://dyn87lf4436y3" path="res://assets/resources/ui_styles/MainMenuButton.tres" id="4_dpyxx"]
 [ext_resource type="FontFile" uid="uid://bb74yqfgngijg" path="res://assets/fonts/AlteHaasGroteskBold.ttf" id="5_vgykv"]
 
-[node name="EscMenu" type="Control" unique_id=1769971828]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=416935551]
+layer = 9999
+
+[node name="EscMenu" type="Control" parent="." unique_id=1769971828]
 process_mode = 3
 z_index = 999
 layout_mode = 3
@@ -21,7 +24,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_vgykv")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=48466012]
+[node name="ColorRect" type="ColorRect" parent="EscMenu" unique_id=48466012]
 z_index = -1
 layout_mode = 0
 offset_top = -378.0
@@ -29,28 +32,28 @@ offset_right = 1999.0
 offset_bottom = 720.0
 color = Color(0.17254902, 0.17254902, 0.17254902, 0.34509805)
 
-[node name="Sensitivity" parent="." unique_id=736337411 instance=ExtResource("1_lxta3")]
+[node name="Sensitivity" parent="EscMenu" unique_id=736337411 instance=ExtResource("1_lxta3")]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 510.0
 offset_right = 526.8485
 offset_bottom = 560.0
 
-[node name="MaxFps" parent="." unique_id=1734334787 instance=ExtResource("2_ldi25")]
+[node name="MaxFps" parent="EscMenu" unique_id=1734334787 instance=ExtResource("2_ldi25")]
 layout_mode = 0
 offset_left = 286.0
 offset_top = 611.0
 offset_right = 372.5
 offset_bottom = 642.0
 
-[node name="FOV" parent="." unique_id=575552083 instance=ExtResource("3_dpyxx")]
+[node name="FOV" parent="EscMenu" unique_id=575552083 instance=ExtResource("3_dpyxx")]
 layout_mode = 0
 offset_left = 703.0
 offset_top = 494.0
 offset_right = 1187.8485
 offset_bottom = 544.0
 
-[node name="Back" type="Button" parent="." unique_id=819489497]
+[node name="Back" type="Button" parent="EscMenu" unique_id=819489497]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -68,7 +71,7 @@ theme_override_font_sizes/font_size = 50
 text = "close"
 alignment = 0
 
-[node name="Menu" type="Button" parent="." unique_id=1889324263]
+[node name="Menu" type="Button" parent="EscMenu" unique_id=1889324263]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -86,7 +89,7 @@ theme_override_font_sizes/font_size = 50
 text = "back to menu"
 alignment = 0
 
-[node name="Quit" type="Button" parent="." unique_id=1246730492]
+[node name="Quit" type="Button" parent="EscMenu" unique_id=1246730492]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -104,7 +107,7 @@ theme_override_font_sizes/font_size = 50
 text = "quit game"
 alignment = 0
 
-[node name="Label" type="Label" parent="." unique_id=757265512]
+[node name="Label" type="Label" parent="EscMenu" unique_id=757265512]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -117,6 +120,3 @@ theme_override_fonts/font = ExtResource("5_vgykv")
 theme_override_font_sizes/font_size = 64
 text = "ESC Menu"
 horizontal_alignment = 1
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=416935551]
-layer = 9999
