@@ -14,14 +14,11 @@ var button = preload("res://assets/prefabs/UI/LevelCard.tscn")
 @export var body_parts: Dictionary[ColorPickerButton, String]
 
 func _ready():
+	OS.request_permissions()
 	var perms = OS.get_granted_permissions()
-	if not perms.has("android.permission.READ_EXTERNAL_STORAGE"):
+	if not (perms.has("android.permission.READ_EXTERNAL_STORAGE") or perms.has("android.permission.MANAGE_EXTERNAL_STORAGE")):
 		$Main/warn.show()
 		OS.request_permission("android.permission.READ_EXTERNAL_STORAGE")
-	elif not perms.has("android.permission.MANAGE_EXTERNAL_STORAGE"):
-		$Main/warn.show()
-		OS.request_permission("android.permission.MANAGE_EXTERNAL_STORAGE")
-	
 	#var levels = load_all_levels()
 	#for i in levels:
 		#var level = load_level(i)
