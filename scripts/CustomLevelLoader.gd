@@ -1,11 +1,11 @@
 extends Node3D
 
-@onready var part = preload("res://assets/prefabs/building/Old/Part.tscn")
-@onready var cylinder = preload("res://assets/prefabs/building/Old/cylinder.tscn")
-@onready var wedge = preload("res://assets/prefabs/building/Old/wedge.tscn")
-@onready var cornerwedge = preload("res://assets/prefabs/building/Old/cornerwedge.tscn")
-@onready var ball = preload("res://assets/prefabs/building/Old/ball.tscn")
-@onready var truss = preload("res://assets/prefabs/building/Old/Truss.tscn")
+@onready var part = preload("res://assets/prefabs/building/Parts/Part.tscn")
+@onready var cylinder = preload("res://assets/prefabs/building/Parts/cylinder.tscn")
+@onready var wedge = preload("res://assets/prefabs/building/Parts/wedge.tscn")
+@onready var cornerwedge = preload("res://assets/prefabs/building/Parts/cornerwedge.tscn")
+@onready var ball = preload("res://assets/prefabs/building/Parts/ball.tscn")
+@onready var truss = preload("res://assets/prefabs/building/Parts/Truss.tscn")
 @onready var player = $Player
 
 
