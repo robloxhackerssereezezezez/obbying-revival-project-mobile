@@ -476,7 +476,7 @@ func _step_climbing() -> void:
 						
 					force_update_transform()
 	else:
-		# step down handling, bad but better than nothing
+		# step down handling
 		var forward_tgt = global_transform.translated(step_displacement)
 		var max_possible_step_down := 2.0
 		var down_sweep = Vector3(0.0, -max_possible_step_down, 0.0)
@@ -486,7 +486,13 @@ func _step_climbing() -> void:
 			var drop_dist = ground_hit.get_travel().y
 			
 			if drop_dist < -0.01:
-				velocity.y = drop_dist / dt
+				global_position.y += drop_dist
+				step_visual_offset -= drop_dist
+				
+				if player:
+					player.position.y -= drop_dist
+					
+				force_update_transform()
 
 func _process(_delta: float) -> void:
 	if Health <= 0:
