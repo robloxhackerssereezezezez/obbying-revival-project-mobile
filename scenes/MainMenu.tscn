@@ -55,8 +55,8 @@ func _ready():
 		return
 	
 	if curr_version != latest_version:
-		version.add_theme_color_override(\"font_color\",Color(1,0,0))
 		version.text = \"v%s is outdated! latest version: v%s\" % [curr_version, latest_version]
+		version.add_theme_color_override(\"font_color\",Color(1,0,0))
 	else:
 		version.text = \"v\" + curr_version + \" (latest) \"
 	version.text = '[url=https://github.com/GameabillityOnYt/obbying-revival-project/releases][u]%s[/u][/url]' % version.text
