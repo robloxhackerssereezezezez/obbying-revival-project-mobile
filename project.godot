@@ -221,4 +221,5 @@ jolt_physics_3d/collisions/collision_margin_fraction=0.18245
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
 textures/decals/filter=0
