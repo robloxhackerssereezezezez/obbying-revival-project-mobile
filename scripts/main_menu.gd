@@ -1,3 +1,5 @@
+# variables
+
 extends Node2D
 
 @onready var Main:Node2D = $Main
@@ -13,12 +15,12 @@ var button = preload("res://assets/prefabs/UI/LevelCard.tscn")
 @export var menu_avatar: CharacterAvatarMesh
 @export var body_parts: Dictionary[ColorPickerButton, String]
 
-var whitespace_remover = RegEx.new()
-
 func _ready():
+	# -- Level Handlers -- #
 	get_window().files_dropped.connect(_file_dragged)
 	load_all_levels()
 	
+	# -- Customization -- #
 	for picker in body_parts:
 		var part_name: String = body_parts[picker]
 		picker.color_changed.connect(func(c): _send_color_to_player(part_name, c))
@@ -33,17 +35,6 @@ func _send_color_to_player(part: String, color: Color):
 
 	if DiscordRPCManager != null:
 		DiscordRPCManager.menu()
-
-func _init() -> void:
-	if GameManager.version_latest == "": await GameManager.VersionLoaded
-	whitespace_remover.compile("\\s+")
-	var curr_version = whitespace_remover.sub(GameManager.version,"",true)
-	var latest_version = whitespace_remover.sub(GameManager.version_latest,"",true)
-	if curr_version != latest_version:
-		version.add_theme_color_override("font_color",Color(1,0,0))
-		version.text = "%s is outdated! latest version: %s" % [curr_version, latest_version]
-	else:
-		version.text = GameManager.version
 
 func _file_dragged(files:PackedStringArray):
 	for x in files:
@@ -60,23 +51,21 @@ func _file_dragged(files:PackedStringArray):
 			DirAccess.copy_absolute(x,dest)
 			load_all_levels()
 		else:
-			print("file not json durr")
+			push_warning("file not json durr")
 	pass
 
-
-	
-func _on_play_pressed() -> void:
+func _on_play_pressed() -> void: # when you press play
 	get_tree().change_scene_to_file("res://custom.tscn")
 	
 	if DiscordRPCManager != null:
 		DiscordRPCManager.playing(GameManager.currentLevel)
 
 
-func _on_settings_pressed() -> void:
+func _on_settings_pressed() -> void: # when you press settings it makes your camera go to the settings area
 	cam.global_position = Settings.global_position
 	
 	if DiscordRPCManager != null:
-		DiscordRPCManager.settings()
+		DiscordRPCManager.settings() # discordrpc settings thingy
 
 
 func _on_return_to_main_pressed() -> void:
@@ -91,7 +80,7 @@ func _on_return_to_settings_pressed() -> void:
 func _on_avatar_pressed() -> void:
 	cam.global_position = AvatarCustom.global_position
 
-func load_level(path):
+func load_level(path): # loads level data and returns it
 	var file = FileAccess.open(path,FileAccess.READ)
 	if file == null:
 		print("failed to open file " + path)
@@ -105,7 +94,7 @@ func load_level(path):
 	return data
 
 
-func load_all_levels():
+func load_all_levels(): # loads all levels in the folder and then adds it to the level list
 	for x in list.get_children():
 		x.call_deferred("queue_free")
 
@@ -133,7 +122,7 @@ func load_all_levels():
 		)
 
 
-func fetch_levels():
+func fetch_levels(): # fetches all ur levels
 	var levels = []
 	var dir = DirAccess.open("user://levels")
 	
