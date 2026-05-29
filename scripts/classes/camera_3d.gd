@@ -64,8 +64,9 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		if rotating or GameManager.shiftlocked:
-			yaw -= event.relative.x * GameManager.data.sensitivity / 200.0
-			pitch -= event.relative.y * GameManager.data.sensitivity / 200.0
+			var aspect = get_viewport().size.x / get_viewport().size.y
+			yaw -= event.screen_relative.x * aspect * GameManager.data.sensitivity / 200.0
+			pitch -= event.screen_relative.y  * GameManager.data.sensitivity / 200.0
 			pitch = clamp(pitch, -1.5, 1.5)
 
 func _process(delta):
@@ -78,6 +79,8 @@ func _process(delta):
 	var look_basis = Basis.from_euler(Vector3(pitch, yaw, 0))
 	global_transform.basis = look_basis
 	var target_focus_pos = target.get_node("Focus").global_position
+	if "step_visual_offset" in target:
+		target_focus_pos.y += target.step_visual_offset
 	
 	var side_offset = Vector3.ZERO
 	if GameManager.shiftlocked and mode == CameraMode.NORMAL:
