@@ -77,12 +77,13 @@ func playing(level_path:String):
 		return
 
 	var data = json.data
-
+	
+	@warning_ignore("shadowed_variable_base_class")
 	var name = data.get("ObbyName", "Unknown")
 	var diff = data.get("Difficulty", "Unknown")
 	var creator = data.get("Creator", "Unknown")
 
-	var details = ("All Jumping " + name) if GameManager.alljump else ("Playing " + name)
+	var details = ("All Jumping " + name) if GameManager.practice else ("Playing " + name)
 	# i hate that state is a gray text right ot timer and not actualy rpc state
 	var state = "Tier " + str(diff) + " by " + creator
 

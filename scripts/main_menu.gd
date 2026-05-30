@@ -1,14 +1,18 @@
+# variables
+
 extends Node2D
 
 @onready var Main:Node2D = $Main
 @onready var Settings:Node2D = $Settings
 @onready var AvatarCustom:Node2D = $AvatarCustom
+@onready var Help:Node2D = $Help
 @onready var cam:Camera2D = $Camera2D
 var button = preload("res://assets/prefabs/UI/LevelCard.tscn")
 @onready var title = $Main/Desc/Label
 @onready var desc = $Main/Desc/Label2
 @onready var list = $Main/Panel/ScrollContainer/VBoxContainer
 @onready var file_dialog = $FileDialog
+@onready var version = $Main/Version
 
 @export var menu_avatar: CharacterAvatarMesh
 @export var body_parts: Dictionary[ColorPickerButton, String]
@@ -38,9 +42,11 @@ func _ready():
 			#GameManager.currentLevel = i
 			#descLabel.text = "Selected: %s\nTier: %s\nBy: %s" % [obby_name, difficulty, creator]
 		#)
+	# -- Level Handlers -- #
 	get_window().files_dropped.connect(_file_dragged)
 	load_all_levels()
 	
+	# -- Customization -- #
 	for picker in body_parts:
 		var part_name: String = body_parts[picker]
 		picker.color_changed.connect(func(c): _send_color_to_player(part_name, c))
@@ -56,9 +62,8 @@ func _send_color_to_player(part: String, color: Color):
 func _file_dragged(files:PackedStringArray):
 	for x in files:
 		if x.ends_with(".json"):
-			print("level lowk dragged")
 			var file_name = x.get_file()
-			print(file_name)
+			print(file_name + " has been dragged into the game!")
 			var dest = "user://levels/"+file_name
 			
 			if FileAccess.file_exists(dest):
@@ -68,7 +73,7 @@ func _file_dragged(files:PackedStringArray):
 			DirAccess.copy_absolute(x,dest)
 			load_all_levels()
 		else:
-			print("file not json durr")
+			push_warning("File isn't json! Ignoring.")
 	pass
 
 
